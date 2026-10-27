@@ -8,22 +8,17 @@
 [![C++](https://img.shields.io/badge/Language-C++%20(Arduino)-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-An intelligent, low-cost Internet of Things (IoT) greenhouse and plant care system designed to autonomously monitor microclimatic conditions, detect physical intrusion, and push real-time alerts to farmers and botanists via the Blynk cloud platform.
-
-<p align="center">
-  <img src="assets/images/greenhouse_illustration.png" alt="Smart Greenhouse Concept" width="460" style="border-radius:12px;"/>
-  <img src="assets/images/blynk_mobile_app.png" alt="Blynk IoT Mobile Dashboard" width="310" style="border-radius:12px;"/>
-</p>
+An intelligent, low-cost Internet of Things (IoT) greenhouse and plant care system designed to autonomously monitor microclimatic conditions, detect physical intrusion, and push real-time alerts via the Blynk cloud platform.
 
 ---
 
 [Project Overview](#-project-overview) •
-[Evidence & Photos](#-hardware-prototype-evidence) •
+[Hardware Evidence](#-hardware-prototype-evidence) •
 [Circuit & Schematics](#-circuit-diagram--pin-mapping) •
 [System Architecture](#-system-architecture) •
 [Blynk Setup](#-blynk-iot-cloud-configuration) •
 [Installation](#-getting-started--installation) •
-[Academic Details](#-academic-credits)
+[License](#-license)
 
 </div>
 
@@ -31,7 +26,7 @@ An intelligent, low-cost Internet of Things (IoT) greenhouse and plant care syst
 
 ## 📖 Project Overview
 
-Greenhouses and modern agricultural facilities require stringent control over environmental parameters—temperature, atmospheric humidity, soil volumetric water content, illumination, and perimeter security. Manual record-keeping is labor-intensive, slow to respond, and vulnerable to human oversight.
+Greenhouses and modern agricultural facilities require continuous control over environmental parameters—temperature, atmospheric humidity, soil volumetric water content, illumination, and perimeter security. Manual record-keeping is labor-intensive, slow to respond, and vulnerable to errors.
 
 The **Smart Greenhouse IoT System** provides a continuous, automated solution powered by the **NodeMCU ESP8266** microcontroller. The system gathers sensor telemetry every cycle, evaluates risk conditions in real time, and broadcasts data to the **Blynk Cloud 2.0** ecosystem. When adverse parameters occur (e.g., dry soil, low illumination, or wildlife intrusion), local auditory and visual alarms activate simultaneously with mobile push alerts.
 
@@ -39,8 +34,8 @@ The **Smart Greenhouse IoT System** provides a continuous, automated solution po
 
 - **🌡️ Microclimate Monitoring:** Real-time temperature (°C) and relative humidity (%) via a calibrated DHT11 sensor.
 - **💧 Soil Moisture Sensing:** Analog volumetric water content normalization (0–100%) to safeguard against under-watering.
-- **☀️ Sunlight / Illumination Tracking:** Light-Dependent Resistor (LDR) optical detection for ambient lux threshold compliance.
-- **🛡️ Perimeter & Intruder Defense:** HC-SR04 ultrasonic sonic echo proximity detection to warn against wildlife or pest intrusions within 30 cm.
+- **☀️ Sunlight / Illumination Tracking:** Light-Dependent Resistor (LDR) optical detection for ambient light threshold compliance.
+- **🛡️ Perimeter & Intruder Defense:** HC-SR04 ultrasonic echo proximity detection to warn against wildlife or pest intrusions within 30 cm.
 - **🚨 Multi-Channel Alerting:** 
   - On-site active Piezo buzzer alarm for proximity warnings.
   - High-visibility LED indicator for critical moisture levels (< 25%).
@@ -51,7 +46,7 @@ The **Smart Greenhouse IoT System** provides a continuous, automated solution po
 
 ## 📸 Hardware Prototype Evidence
 
-Real-world implementation of the prototype developed and tested in the laboratory:
+Real-world implementation of the prototype developed and tested:
 
 <div align="center">
   <table>
@@ -115,7 +110,7 @@ sequenceDiagram
     participant MCU as NodeMCU ESP8266
     participant ACT as Actuators (Buzzer & LED)
     participant CLOUD as Blynk IoT Cloud 2.0
-    participant APP as Farmer's Smartphone (Blynk App)
+    participant APP as Mobile Smartphone (Blynk App)
 
     loop Sampling Cycle (Every 5–10s)
         S->>MCU: Transmit Raw Analog & Digital Voltages
@@ -184,7 +179,7 @@ The firmware source code is available in the [`src/`](src/) directory:
 - [`src/config.h.example`](src/config.h.example): Credential header template for keeping personal authentication tokens and Wi-Fi credentials secure.
 
 ### Soil Moisture Normalization Logic
-The analog soil probe reads raw ADC counts ranging from `0` (saturated water) to `1023` (completely dry air). The firmware converts this inverted value into a plant-friendly percentage:
+The analog soil probe reads raw ADC counts ranging from `0` (saturated water) to `1023` (completely dry air). The firmware converts this inverted value into a percentage:
 
 $$\text{Moisture Percentage (\%)} = \text{constrain}\left(\operatorname{map}(\text{rawADC}, 1023, 0, 0, 100), 0, 100\right)$$
 
@@ -206,7 +201,7 @@ $$\text{Distance (cm)} = \frac{\Delta t_{\text{pulseIn}} \times 0.034}{2}$$
    - 1× Ultrasonic Sensor (HC-SR04)
    - 1× 5V Active Piezo Buzzer
    - 1× 5mm Red Alert LED & 220Ω Resistor
-   - 1× Solderless Breadboard & Male-to-Male / Male-to-Female Jumper Wires
+   - 1× Solderless Breadboard & Jumper Wires
    - 1× Micro-USB Cable for programming and power
 
 2. **Software Environment:**
@@ -215,7 +210,7 @@ $$\text{Distance (cm)} = \frac{\Delta t_{\text{pulseIn}} \times 0.034}{2}$$
      ```
      http://arduino.esp8266.com/stable/package_esp8266com_index.json
      ```
-   - Required Arduino Libraries (Install via Library Manager):
+   - Required Arduino Libraries:
      - `Blynk` by Volodymyr Shymanskyy
      - `DHT sensor library` by Adafruit
      - `Adafruit Unified Sensor` by Adafruit
@@ -258,27 +253,6 @@ $$\text{Distance (cm)} = \frac{\Delta t_{\text{pulseIn}} \times 0.034}{2}$$
 - [ ] **Predictive Machine Learning:** Train micro-edge models to forecast microclimatic trends and disease likelihood.
 - [ ] **Solar Energy Harvesting:** Integrate a 5V/18V solar cell with a TP4056 lithium battery charger for off-grid deployment.
 - [ ] **Voice Assistant Integration:** Add voice telemetry triggers with Google Assistant and Amazon Alexa.
-
----
-
-## 🎓 Academic Credits
-
-This project was developed as a university engineering mini-project:
-
-- **Project Title:** Smart Greenhouse IoT System for Real-Time Monitoring and Alert
-- **Student Name:** Akhil Rawat
-- **University Roll No.:** 2318259
-- **Class Roll No.:** 09
-- **Section:** E1
-- **Program:** Bachelor of Technology (B.Tech) in Computer Science & Engineering
-- **Semester:** III (Third Semester)
-- **Institution:** [Graphic Era Hill University](https://www.gehu.ac.in/), Dehradun Campus, Uttarakhand, India
-- **Faculty Supervisor / Co-ordinator:** Mr. Shushant Chamoli
-- **Date of Submission:** 10/01/2025
-
-📄 Project Documentation:
-- Full Academic Report: [docs/Smart_Greenhouse_IoT_Report.pdf](docs/Smart_Greenhouse_IoT_Report.pdf)
-- Presentation Slides: [docs/Smart_Greenhouse_Presentation.pptx](docs/Smart_Greenhouse_Presentation.pptx)
 
 ---
 

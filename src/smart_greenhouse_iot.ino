@@ -1,9 +1,7 @@
 /**********************************************************************************
  * Smart Greenhouse IoT System for Real-Time Monitoring and Alert
  * 
- * Developer: Akhil Rawat (Graphic Era Hill University, Dehradun)
- * Course: B.Tech Computer Science & Engineering
- * Project: IoT Mini Project
+ * Developer: Akhil Rawat
  * Microcontroller: ESP8266 (NodeMCU v3 / ESP-12E)
  * Cloud Platform: Blynk IoT 2.0
  * 

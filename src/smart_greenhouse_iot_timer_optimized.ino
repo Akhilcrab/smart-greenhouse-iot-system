@@ -4,7 +4,7 @@
  * Uses BlynkTimer to ensure smooth, non-blocking execution without delay()
  * Recommended for stable 24/7 continuous greenhouse monitoring.
  * 
- * Developer: Akhil Rawat (Graphic Era Hill University, Dehradun)
+ * Developer: Akhil Rawat
  **********************************************************************************/
 
 #define BLYNK_TEMPLATE_ID "TMPL3zUiMuQij"
