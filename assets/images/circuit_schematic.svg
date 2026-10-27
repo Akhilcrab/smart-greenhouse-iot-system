@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="100%" height="100%" style="background:#0f172a; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="mcuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="sensorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="glow"/>
+      <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Title & Subtitle -->
+  <text x="500" y="42" fill="#38bdf8" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1">SMART GREENHOUSE IoT SYSTEM - CIRCUIT SCHEMATIC</text>
+  <text x="500" y="66" fill="#94a3b8" font-size="13" text-anchor="middle">NodeMCU (ESP8266 ESP-12E) Sensor & Actuator Interfacing</text>
+
+  <!-- Central NodeMCU Board -->
+  <g id="nodemcu">
+    <rect x="360" y="110" width="280" height="470" rx="14" fill="url(#mcuGrad)" stroke="#38bdf8" stroke-width="2.5" filter="url(#glow)"/>
+    <rect x="420" y="125" width="160" height="90" rx="6" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+    <path d="M435,135 Q445,120 455,135 T475,135 T495,135 T515,135 T535,135 T555,135 T565,135" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="500" y="175" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">ESP8266 (ESP-12E)</text>
+    <text x="500" y="195" fill="#38bdf8" font-size="11" text-anchor="middle">NodeMCU v3 Board</text>
+
+    <!-- NodeMCU Microcontroller Chip representation -->
+    <rect x="440" y="240" width="120" height="90" rx="4" fill="#020617" stroke="#475569" stroke-width="1.5"/>
+    <text x="500" y="285" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Tensilica L106</text>
+    <text x="500" y="303" fill="#64748b" font-size="10" text-anchor="middle">32-bit RISC / 80MHz</text>
+
+    <!-- Pin Headers Left (A0, G, VU, S3.. Vin) -->
+    <!-- Pin Headers Right (D0..D8, RX, TX) -->
+    <g fill="#f1f5f9" font-size="11" font-family="monospace">
+      <!-- Left Pins -->
+      <circle cx="375" cy="360" r="4.5" fill="#f59e0b"/>
+      <text x="388" y="364" fill="#fbbf24">A0 (ADC)</text>
+
+      <circle cx="375" cy="400" r="4.5" fill="#ef4444"/>
+      <text x="388" y="404" fill="#f87171">3.3V / VU</text>
+
+      <circle cx="375" cy="440" r="4.5" fill="#94a3b8"/>
+      <text x="388" y="444" fill="#cbd5e1">GND</text>
+
+      <!-- Right Pins -->
+      <circle cx="625" cy="230" r="4.5" fill="#a855f7"/>
+      <text x="612" y="234" text-anchor="end" fill="#c084fc">D0 (GPIO16)</text>
+
+      <circle cx="625" cy="275" r="4.5" fill="#06b6d4"/>
+      <text x="612" y="279" text-anchor="end" fill="#22d3ee">D4 (GPIO2)</text>
+
+      <circle cx="625" cy="320" r="4.5" fill="#ec4899"/>
+      <text x="612" y="324" text-anchor="end" fill="#f472b6">D5 (GPIO14)</text>
+
+      <circle cx="625" cy="365" r="4.5" fill="#eab308"/>
+      <text x="612" y="369" text-anchor="end" fill="#facc15">D6 (GPIO12)</text>
+
+      <circle cx="625" cy="410" r="4.5" fill="#10b981"/>
+      <text x="612" y="414" text-anchor="end" fill="#34d399">D7 (GPIO13)</text>
+
+      <circle cx="625" cy="455" r="4.5" fill="#6366f1"/>
+      <text x="612" y="459" text-anchor="end" fill="#818cf8">D8 (GPIO15)</text>
+
+      <circle cx="625" cy="500" r="4.5" fill="#94a3b8"/>
+      <text x="612" y="504" text-anchor="end" fill="#cbd5e1">GND</text>
+    </g>
+  </g>
+
+  <!-- Left Components: Soil Moisture & Power -->
+  <!-- 1. Soil Moisture Sensor -->
+  <g id="soil_sensor" transform="translate(40, 310)">
+    <rect width="240" height="95" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.8"/>
+    <text x="120" y="26" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">SOIL MOISTURE SENSOR</text>
+    <text x="120" y="44" fill="#94a3b8" font-size="10" text-anchor="middle">Analog Resistive Probe + Comparator</text>
+    <text x="20" y="72" fill="#cbd5e1" font-size="10" font-family="monospace">VCC [3.3V] | GND | AOUT -> A0</text>
+    <!-- Wire to A0 -->
+    <path d="M240,70 L320,70 L320,50 L375,50" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
+  </g>
+
+  <!-- 2. Power / Breadboard Rail Info -->
+  <g id="power_info" transform="translate(40, 440)">
+    <rect width="240" height="100" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <text x="120" y="25" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">POWER DISTRIBUTION</text>
+    <text x="15" y="50" fill="#f87171" font-size="11">• 3.3V Rail: Sensors (DHT11, LDR, Soil)</text>
+    <text x="15" y="70" fill="#facc15" font-size="11">• 5V (Vin): Ultrasonic HC-SR04 VCC</text>
+    <text x="15" y="90" fill="#94a3b8" font-size="11">• Common Ground (GND) across all units</text>
+  </g>
+
+  <!-- Right Components: DHT11, LDR, HC-SR04, Buzzer, LED -->
+  <!-- 1. LDR Sensor (D0) -->
+  <g id="ldr_module" transform="translate(730, 195)">
+    <rect width="230" height="65" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.8"/>
+    <text x="115" y="24" fill="#c084fc" font-size="13" font-weight="bold" text-anchor="middle">LDR LIGHT MODULE</text>
+    <text x="115" y="42" fill="#94a3b8" font-size="10" text-anchor="middle">Photoresistor with LM393</text>
+    <text x="115" y="56" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">DO Pin -> D0 (GPIO16)</text>
+    <!-- Wire to D0 -->
+    <path d="M0,35 L-105,35" fill="none" stroke="#a855f7" stroke-width="2"/>
+  </g>
+
+  <!-- 2. DHT11 Sensor (D4) -->
+  <g id="dht11_module" transform="translate(730, 270)">
+    <rect width="230" height="65" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.8"/>
+    <text x="115" y="24" fill="#22d3ee" font-size="13" font-weight="bold" text-anchor="middle">DHT11 SENSOR</text>
+    <text x="115" y="42" fill="#94a3b8" font-size="10" text-anchor="middle">Temperature &amp; Humidity</text>
+    <text x="115" y="56" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">DATA Pin -> D4 (GPIO2)</text>
+    <!-- Wire to D4 -->
+    <path d="M0,10 L-105,10" fill="none" stroke="#06b6d4" stroke-width="2"/>
+  </g>
+
+  <!-- 3. Buzzer (D5) -->
+  <g id="buzzer_module" transform="translate(730, 345)">
+    <rect width="230" height="65" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.8"/>
+    <text x="115" y="24" fill="#f472b6" font-size="13" font-weight="bold" text-anchor="middle">PIEZO BUZZER</text>
+    <text x="115" y="42" fill="#94a3b8" font-size="10" text-anchor="middle">Intrusion / Animal Warning</text>
+    <text x="115" y="56" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Positive Pin -> D5 (GPIO14)</text>
+    <!-- Wire to D5 -->
+    <path d="M0,-20 L-105,-20" fill="none" stroke="#ec4899" stroke-width="2"/>
+  </g>
+
+  <!-- 4. Alert LED (D6) -->
+  <g id="led_module" transform="translate(730, 420)">
+    <rect width="230" height="65" rx="8" fill="#1e293b" stroke="#eab308" stroke-width="1.8"/>
+    <text x="115" y="24" fill="#facc15" font-size="13" font-weight="bold" text-anchor="middle">SOIL ALERT LED</text>
+    <text x="115" y="42" fill="#94a3b8" font-size="10" text-anchor="middle">Low Moisture Visual Indicator</text>
+    <text x="115" y="56" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Anode (+) -> D6 (GPIO12)</text>
+    <!-- Wire to D6 -->
+    <path d="M0,-55 L-105,-55" fill="none" stroke="#eab308" stroke-width="2"/>
+  </g>
+
+  <!-- 5. Ultrasonic Sensor (HC-SR04) (D7, D8) -->
+  <g id="ultrasonic_module" transform="translate(730, 495)">
+    <rect width="230" height="75" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.8"/>
+    <text x="115" y="24" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle">HC-SR04 ULTRASONIC</text>
+    <text x="115" y="42" fill="#94a3b8" font-size="10" text-anchor="middle">Distance &amp; Object Proximity</text>
+    <text x="115" y="60" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">TRIG -> D7 | ECHO -> D8</text>
+    <!-- Wires to D7 and D8 -->
+    <path d="M0,-85 L-105,-85" fill="none" stroke="#10b981" stroke-width="2"/>
+    <path d="M0,-40 L-105,-40" fill="none" stroke="#6366f1" stroke-width="2"/>
+  </g>
+
+  <!-- Footer Legend -->
+  <rect x="50" y="595" width="900" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="500" y="616" fill="#94a3b8" font-size="11" text-anchor="middle">
+    All inputs and outputs operate at standard 3.3V logic levels. Ground lines must be tied together.
+  </text>
+</svg>

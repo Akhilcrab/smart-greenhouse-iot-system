@@ -1,0 +1,21 @@
+# Arduino & ESP8266 temporary build artifacts
+*.hex
+*.elf
+*.bin
+build/
+.cache/
+
+# Local credentials (Keep personal WiFi passwords & tokens private!)
+config.h
+secrets.h
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.bak

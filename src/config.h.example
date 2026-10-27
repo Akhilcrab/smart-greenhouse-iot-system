@@ -1,0 +1,17 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// ==========================================
+// Blynk IoT 2.0 Credentials
+// ==========================================
+#define BLYNK_TEMPLATE_ID   "TMPL3zUiMuQij"
+#define BLYNK_TEMPLATE_NAME "NODEMCU"
+#define BLYNK_AUTH_TOKEN    "YOUR_BLYNK_AUTH_TOKEN"
+
+// ==========================================
+// Local Wi-Fi Network Credentials
+// ==========================================
+#define WIFI_SSID           "YOUR_WIFI_NETWORK_NAME"
+#define WIFI_PASS           "YOUR_WIFI_PASSWORD"
+
+#endif // CONFIG_H
